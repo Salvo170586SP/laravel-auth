@@ -62,6 +62,7 @@
                 margin-bottom: 30px;
             }
         </style>
+        
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -80,12 +81,14 @@
             @endif
  
             <div class="content">
-                
+
                 <div id="root">
 
                 </div>
             </div>   
 
         </div>
+
+        <script src="{{ asset('js/front.js') }}"></script>
     </body>
 </html>
