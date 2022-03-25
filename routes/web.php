@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.home');
-})->name('guest.home');
+
 
 Auth::routes(['register' => false]);
 
 
+
+//pagine ADMIN gestite da blade (back-end)
 Route::middleware('auth')
 ->prefix('admin')
 ->name('admin.')
@@ -27,6 +27,10 @@ Route::middleware('auth')
 ->group(function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('posts', 'PostController');
-
+    
 });
 
+
+Route::get('{any?}', function () {
+    return view('guest.home');
+})->where("any" , ".*");
