@@ -8,7 +8,7 @@
             </h1>
         </header>
         <main>
-            <table class="table">
+            <table class="table border">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -25,7 +25,7 @@
                       <td>{{ $post->title }}</td>
                       <td>{{ $post->slug }}</td>
                       <td>{{ $post->created_at }}</td>
-                      <td>---</td>
+                      <td><a class="btn btn-primary " href="{{ route('admin.posts.show', $post->id) }}">Vedi</a></td>
                     </tr>                      
                     @empty
                     <tr>
