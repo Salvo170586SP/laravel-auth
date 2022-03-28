@@ -17,5 +17,23 @@
                 <span>{{ $post->created_at }}</span>
             </div>
         </div>
+        <form class="m-2" action="{{ route('admin.posts.destroy', $post->id) }}"
+            method="POST" id="delete-form" id="delete-form">
+            @method('DELETE')
+            @csrf
+            <button class="btn btn-danger " type="submit">Cancella</button>
+        </form>
     </div>
+
+@endsection
+
+@section('script')
+<script>
+    const deleteForm = document.getElementById('delete-form');
+    deleteForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const confirmation = confirm('Sei sicuro di eliminare il post?');
+        if(confirmation) e.target.submit();
+    });
+</script>
 @endsection

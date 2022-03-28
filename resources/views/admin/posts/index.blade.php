@@ -33,15 +33,15 @@
                             <td>{{ $post->slug }}</td>
                             <td>{{ $post->created_at }}</td>
                             <td class="d-flex">
-                                <a class="btn btn-sm btn-primary"
+                                <a class="btn btn-sm btn-primary mx-2"
                                     href="{{ route('admin.posts.show', $post->id) }}">Vedi</a>
-                                <form class="mx-2" action="{{ route('admin.posts.destroy', $post->id) }}"
-                                    method="POST">
+                                <form action="{{ route('admin.posts.destroy', $post->id) }}"
+                                    method="POST" class="delete-form">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-sm btn-danger " type="submit">Cancella</button>
                                 </form>
-                                <a class="btn btn-sm btn-secondary"
+                                <a class="btn btn-sm btn-secondary mx-2"
                                     href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
                             </td>
                         </tr>
@@ -60,4 +60,17 @@
             @endif
         </main>
     </div>
+@endsection
+
+@section('script')
+<script>
+    const deleteForm = document.querySelectorAll('.delete-form');
+    deleteForm.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const confirmation = confirm('Sei sicuro di eliminare il post?');
+            if(confirmation) e.target.submit();
+        });
+    });
+</script>
 @endsection
