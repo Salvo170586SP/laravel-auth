@@ -43,6 +43,11 @@ class PostController extends Controller
             'title' => 'required|string|unique:posts|min:5|max:100',
             'content' => 'string',
             'image' => 'url',
+        ],[
+            'title.required'=> 'Il titolo è obbligatorio',
+            'title.min'=> 'Il titolo deve avere almeno 5 caratteri',
+            'title.max'=> 'Il titolo può avere massimo 100 caratteri',
+            'title.unique'=> "Esiste già un titolo con il nome $request->title",
         ]);
 
         $data = $request->all();
@@ -91,6 +96,11 @@ class PostController extends Controller
             'title' => ['required','string', Rule::unique('posts')->ignore($post->id),'min:5', 'max:100'],
             'content' => 'string',
             'image' => 'url',
+        ],[
+            'title.required'=> 'Il titolo è obbligatorio',
+            'title.min'=> 'Il titolo deve avere almeno 5 caratteri',
+            'title.max'=> 'Il titolo può avere massimo 100 caratteri',
+            'title.unique'=> "Esiste già un titolo con il nome $request->title",
         ]);
 
         $data = $request->all();
