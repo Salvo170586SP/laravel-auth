@@ -24,13 +24,16 @@
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->slug }}</td>
                             <td>{{ $post->created_at }}</td>
-                            <td class="d-flex"><a class="btn btn-sm btn-primary mx-2"
+                            <td class="d-flex">
+                                <a class="btn btn-sm btn-primary"
                                     href="{{ route('admin.posts.show', $post->id) }}">Vedi</a>
-                                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
-                                  @method('DELETE')
-                                  @csrf
+                                <form class="mx-2" action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
                                     <button class="btn btn-sm btn-danger " type="submit">Cancella</button>
                                 </form>
+                                <a class="btn btn-sm btn-secondary"
+                                    href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
                             </td>
                         </tr>
                     @empty

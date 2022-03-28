@@ -8,7 +8,7 @@
         </div>
         <div class="border border-secondary clearfix">
             <div class="float-left">
-                <img src="{{ $post->image }}" width="350px" alt="{{ $post->slug }}">
+                <img src="{{ $post->image }}" width="250px" alt="{{ $post->slug }}">
             </div>
             <div class="body-text float-left m-3">
                 <h2>{{ $post->title }}</h2>
