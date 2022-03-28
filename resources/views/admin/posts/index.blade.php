@@ -36,15 +36,19 @@
                                     href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
                             </td>
                         </tr>
-                    @empty
+                        @empty
                         <tr>
                             <td>
                                 <h2>non ci sono post</h2>
                             </td>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                        @endforelse
+                    </tbody>
+                </table>
+                {{-- numeri pagine --}}
+                @if($posts->hasPages())
+                {{ $posts->links() }}
+                @endif
         </main>
     </div>
 @endsection
