@@ -6,6 +6,14 @@
             <h1>I miei post</h1>
             <a class="btn btn-secondary" href="{{ route('admin.posts.create') }}">Aggiungi un post</a>
         </div>
+
+        {{-- messaggi di avviso --}}
+        @if (session('message'))
+            <div class="alert alert-primary">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <main>
             <table class="table border">
                 <thead>
@@ -27,7 +35,8 @@
                             <td class="d-flex">
                                 <a class="btn btn-sm btn-primary"
                                     href="{{ route('admin.posts.show', $post->id) }}">Vedi</a>
-                                <form class="mx-2" action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                                <form class="mx-2" action="{{ route('admin.posts.destroy', $post->id) }}"
+                                    method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-sm btn-danger " type="submit">Cancella</button>
@@ -36,19 +45,19 @@
                                     href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
                             </td>
                         </tr>
-                        @empty
+                    @empty
                         <tr>
                             <td>
                                 <h2>non ci sono post</h2>
                             </td>
                         </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-                {{-- numeri pagine --}}
-                @if($posts->hasPages())
+                    @endforelse
+                </tbody>
+            </table>
+            {{-- numeri pagine --}}
+            @if ($posts->hasPages())
                 {{ $posts->links() }}
-                @endif
+            @endif
         </main>
     </div>
 @endsection

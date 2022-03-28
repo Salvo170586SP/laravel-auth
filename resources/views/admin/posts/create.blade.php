@@ -17,7 +17,6 @@
             </div>
         @endif
 
-
         <form action="{{ route('admin.posts.store') }}" method="POST">
             @csrf
             <div class="mb-3">

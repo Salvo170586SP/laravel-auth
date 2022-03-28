@@ -57,7 +57,7 @@ class PostController extends Controller
         $post->save();
 
 
-        return redirect()->route('admin.posts.show', compact('post'))->with('message','Post creato con successo');
+        return redirect()->route('admin.posts.index', compact('post'))->with('message','Post creato con successo');
     }
 
     /**

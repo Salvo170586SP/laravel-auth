@@ -21,8 +21,6 @@
         </div>
         @endif
 
-
-
         <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
             @method('PUT')
             @csrf
