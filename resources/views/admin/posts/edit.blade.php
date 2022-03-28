@@ -9,6 +9,20 @@
                 <a class="btn btn-secondary" href="{{ route('admin.posts.index') }}">Torna alla lista</a>
             </div>
         </div>
+
+        {{-- controllo --}}
+        @if($errors->any()) 
+        <div class="alert alert-danger">   
+            <ul>
+                @foreach ($errors-all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach 
+            </ul>
+        </div>
+        @endif
+
+
+
         <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
             @method('PUT')
             @csrf

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -38,6 +39,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required'|'string'|'unique:posts'|'min:5'| 'max:100',
+            'content' => 'string',
+            'image' => 'url',
+        ]);
+
         $data = $request->all();
         $post = new Post();
         $post->fill($data);
@@ -45,7 +52,7 @@ class PostController extends Controller
         $post->save();
 
 
-        return redirect()->route('admin.posts.show', compact('post'));
+        return redirect()->route('admin.posts.show', compact('post'))->with('message','Post creato con successo');
     }
 
     /**
@@ -80,9 +87,16 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => ['required','string', Rule::unique('posts')->ignore($post->id),'min:5', 'max:100'],
+            'content' => 'string',
+            'image' => 'url',
+        ]);
+
         $data = $request->all();
+        $data['slug'] = Str::slug($request->title, '-');
         $post->update($data);
-        return redirect()->route('admin.posts.index', compact('post'));
+        return redirect()->route('admin.posts.index', $post);
     }
 
     /**
